@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    print(postsList);
     _database.ref().child('posts').onChildAdded.listen(_childAdded);
     _database.ref().child('posts').onChildRemoved.listen(_childRemoves);
 
@@ -40,23 +41,22 @@ class _HomePageState extends State<HomePage> {
         color: Colors.black87,
         child: Column(
           children: <Widget>[
+            // Visibility(
+            //   visible: postsList.isEmpty,
+            //   child: Center(
+            //     child: Container(
+            //       alignment: Alignment.center,
+            //       child: CircularProgressIndicator(),
+            //     ),
+            //   ),
+            // ),
             Visibility(
-              visible: postsList.isEmpty,
-              child: Center(
-                child: Container(
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: postsList.isNotEmpty,
+              visible: true,
               child: Expanded(
                   child: FirebaseAnimatedList(
                       query: _databasex,
                       itemBuilder: (BuildContext context, DataSnapshot snapshot,
                           Animation<double> animation, int index) {
-                        print(PostView(postsList[index]));
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Card(

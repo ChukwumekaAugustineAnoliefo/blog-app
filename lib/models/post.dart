@@ -16,10 +16,10 @@ class Post {
   Post(this.key, this.date, this.title, this.body);
 
   Post.fromSnapshot(DataSnapshot snap)
-      : date = (snap.value! as Map<String, dynamic>)[DATE],
+      : date = (snap.value as dynamic)[DATE],
         key = snap.key,
-        body = (snap.value! as Map<String, dynamic>)[BODY],
-        title = (snap.value! as Map<String, dynamic>)[TITLE];
+        body = (snap.value as dynamic)[BODY],
+        title = (snap.value as dynamic)[TITLE];
 
   Map toMap() {
     return {BODY: body, TITLE: title, DATE: date};
